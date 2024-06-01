@@ -1,0 +1,6 @@
+framework module HLBLEManager {
+  umbrella header "HLBLEManager-umbrella.h"
+
+  export *
+  module * { export * }
+}

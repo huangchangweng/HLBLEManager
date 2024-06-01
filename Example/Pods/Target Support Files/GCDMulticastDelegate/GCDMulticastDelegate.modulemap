@@ -1,0 +1,6 @@
+framework module GCDMulticastDelegate {
+  umbrella header "GCDMulticastDelegate-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -1,0 +1,6 @@
+framework module Pods_HLBLEManager_Tests {
+  umbrella header "Pods-HLBLEManager_Tests-umbrella.h"
+
+  export *
+  module * { export * }
+}

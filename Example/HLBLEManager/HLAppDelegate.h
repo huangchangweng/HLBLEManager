@@ -1,0 +1,15 @@
+//
+//  HLAppDelegate.h
+//  HLBLEManager
+//
+//  Created by huangchangweng on 06/01/2024.
+//  Copyright (c) 2024 huangchangweng. All rights reserved.
+//
+
+@import UIKit;
+
+@interface HLAppDelegate : UIResponder <UIApplicationDelegate>
+
+@property (strong, nonatomic) UIWindow *window;
+
+@end

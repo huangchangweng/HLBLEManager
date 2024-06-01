@@ -1,0 +1,13 @@
+use_frameworks!
+
+platform :ios, '10.0'
+
+target 'HLBLEManager_Example' do
+  pod 'HLBLEManager', :path => '../'
+
+  target 'HLBLEManager_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
