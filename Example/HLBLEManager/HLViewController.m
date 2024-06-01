@@ -25,7 +25,8 @@
     [HLBLEManager sharedManager].serverUUIDString = @"1815";
     [HLBLEManager sharedManager].writeUUIDString = @"2A56";
     [HLBLEManager sharedManager].readUUIDString = @"2A5A";
-    [HLBLEManager sharedManager].isAutoConnect = YES;
+    // 自动连接（设备不支持ancs协议用）
+//    [HLBLEManager sharedManager].isAutoConnect = YES;
 }
 
 - (void)dealloc {
@@ -44,6 +45,11 @@
     if (state == CBManagerStatePoweredOn) {
         // 开始扫描设备
         [[HLBLEManager sharedManager] startScanPeripheral];
+        // 自动连接（设备支持ancs协议用）
+        NSArray *peripherals = [[HLBLEManager sharedManager] findSystemOrOtherAppConnectedPeripherals:@[@"1815"]];
+        if (peripherals && peripherals.count > 0) {
+            [[HLBLEManager sharedManager] connectPeripheral:peripherals.lastObject];
+        }
     } else if (state == CBManagerStatePoweredOff) {
         NSLog(@"提醒用户打开蓝牙");
     }

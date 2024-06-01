@@ -337,6 +337,32 @@ static NSObject *g_lock = nil;
                                   type:CBCharacteristicWriteWithResponse];
 }
 
+/**
+ * 获取当前corebluetooth的centralManager对象
+ */
+- (CBCentralManager *)centralManager
+{
+    return [self.babyBluetooth centralManager];
+}
+
+/**
+ * 获取已经被系统或者其他APP连接上的设备数组
+ * 做支持ancs协议设备自动连接用
+ * @param serviceUUIDs 服务的UUID数组
+ */
+- (NSArray<CBPeripheral *> *)findSystemOrOtherAppConnectedPeripherals:(NSArray<NSString *> *)serviceUUIDs
+{
+    if (!serviceUUIDs || serviceUUIDs.count == 0) {
+        return nil;
+    }
+    NSMutableArray *uuids = [NSMutableArray new];
+    for (NSString *uuidStr in serviceUUIDs) {
+        [uuids addObject:[CBUUID UUIDWithString:uuidStr]];
+    }
+    NSArray *arr = [[self centralManager] retrieveConnectedPeripheralsWithServices:uuids];
+    return arr;
+}
+
 #pragma mark - Getter
 
 - (NSMutableArray *)peripheralArray {

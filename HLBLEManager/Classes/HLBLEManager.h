@@ -81,6 +81,7 @@ disconnectPeripheral:(CBPeripheral *)peripheral;
 @property (nonatomic, strong) CBPeripheral *currentPeripheral;
 /// 是否自动连接，默认为NO（以前连接过的设备会记录id，然后在“startScanPeripheral”扫描后如果发现以前连接过的设备会自动连接）
 /// 连接成功会回调“BLEManager:connectedPeripheral:”方法，self.currentPeripheral也有值
+/// ⚠️注意：如果你的设备是支持ancs协议的，那么ancs协议在首次连接app蓝牙的时候就会配对，之后只要你手机开着蓝牙，它都会自动连接。这时候，你再进入app，会发现明明在设置里面显示蓝牙已经连接，但是你在app怎么搜索都搜索不到改蓝牙外设。所以设置该值为YES无用
 @property (nonatomic, assign) BOOL isAutoConnect;
 
 /**
@@ -143,5 +144,17 @@ disconnectPeripheral:(CBPeripheral *)peripheral;
  * @param msgData 数据data值
  */
 - (void)write:(NSData *)msgData;
+
+/**
+ * 获取当前corebluetooth的centralManager对象
+ */
+- (CBCentralManager *)centralManager;
+
+/**
+ * 获取已经被系统或者其他APP连接上的设备数组
+ * 设备支持ancs协议
+ * @param serviceUUIDs 服务的UUID数组
+ */
+- (NSArray<CBPeripheral *> *)findSystemOrOtherAppConnectedPeripherals:(NSArray<NSString *> *)serviceUUIDs;
 
 @end

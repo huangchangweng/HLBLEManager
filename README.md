@@ -5,7 +5,7 @@
 ##### 支持使用CocoaPods引入, Podfile文件中添加:
 
 ```objc
-pod 'HLBLEManager', '0.1.0'
+pod 'HLBLEManager', '0.1.1'
 ```
 
 # # 使用
@@ -37,6 +37,10 @@ iOS 9.0 +, Xcode 7.0 +
 - "GCDMulticastDelegate"
 
 # Version
+
+* 0.1.1 :
+  
+  添加支持ancs协议设备“自动连接”功能
 
 * 0.1.0 :
   
